@@ -1,0 +1,34 @@
+{
+  "name": "mistralys/application-utils-collections",
+  "description": "Interfaces, traits and classes for handling static item collections, similar to Enums and with useful getter methods.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Sebastian Mordziol",
+      "email": "s.mordziol@mistralys.eu",
+      "homepage": "https://www.mistralys.eu",
+      "role": "Lead"
+    }
+  ],
+  "autoload": {
+    "classmap": [
+      "src"
+    ]
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests/AppUtilsTestClasses"
+    ]
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "mistralys/application-utils-core": "^1.0.1",
+    "php": ">=7.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": ">=9.6",
+    "phpstan/phpstan": ">=1.10"
+  }
+}
