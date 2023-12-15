@@ -28,4 +28,6 @@ interface CollectionInterface
     public function getIDs() : array;
 
     public function getDefault() : CollectionRecordInterface;
+
+    public function countRecords() : int;
 }
