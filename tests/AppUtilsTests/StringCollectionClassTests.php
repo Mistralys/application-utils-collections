@@ -7,7 +7,7 @@ namespace AppUtilsTests;
 use AppUtilsTestClasses\BaseTestCase;
 use AppUtilsTestClasses\StringPrimaryCollectionImpl;
 
-final class CollectionClassTests extends BaseTestCase
+final class StringCollectionClassTests extends BaseTestCase
 {
     public function test_getItems() : void
     {

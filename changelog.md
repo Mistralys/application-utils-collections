@@ -1,3 +1,6 @@
+## v1.1.0 - Added integer collection
+- Added the integer-based collection and record classes.
+
 ## v1.0.1 - Dependency update
 - Dependencies: Relaxed Core version requirement to `>=1.0`.
 
