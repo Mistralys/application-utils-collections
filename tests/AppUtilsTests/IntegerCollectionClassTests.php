@@ -71,4 +71,11 @@ final class IntegerCollectionClassTests extends BaseTestCase
             $collection->getIDs()
         );
     }
+
+    public function test_countRecords() : void
+    {
+        $collection = new IntegerPrimaryCollectionImpl();
+
+        $this->assertSame(3, $collection->countRecords());
+    }
 }

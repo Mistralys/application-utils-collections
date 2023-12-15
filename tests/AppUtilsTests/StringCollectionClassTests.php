@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AppUtilsTests;
 
 use AppUtilsTestClasses\BaseTestCase;
+use AppUtilsTestClasses\IntegerPrimaryCollectionImpl;
 use AppUtilsTestClasses\StringPrimaryCollectionImpl;
 
 final class StringCollectionClassTests extends BaseTestCase
@@ -70,5 +71,12 @@ final class StringCollectionClassTests extends BaseTestCase
             ),
             $collection->getIDs()
         );
+    }
+
+    public function test_countRecords() : void
+    {
+        $collection = new IntegerPrimaryCollectionImpl();
+
+        $this->assertSame(3, $collection->countRecords());
     }
 }
