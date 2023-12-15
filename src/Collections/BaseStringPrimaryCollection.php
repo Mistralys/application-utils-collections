@@ -26,7 +26,7 @@ use AppUtils\Traits\StringPrimaryCollectionTrait;
  *
  * @see StringPrimaryCollectionTrait
  */
-abstract class BaseStringPrimaryCollection implements StringPrimaryCollectionInterface
+abstract class BaseStringPrimaryCollection extends BaseCollection implements StringPrimaryCollectionInterface
 {
     use StringPrimaryCollectionTrait;
 }

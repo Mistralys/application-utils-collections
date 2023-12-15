@@ -26,7 +26,7 @@ use AppUtils\Traits\IntegerPrimaryCollectionTrait;
  *
  * @see IntegerPrimaryCollectionTrait
  */
-abstract class BaseIntegerPrimaryCollection implements IntegerPrimaryCollectionInterface
+abstract class BaseIntegerPrimaryCollection extends BaseCollection implements IntegerPrimaryCollectionInterface
 {
     use IntegerPrimaryCollectionTrait;
 }
