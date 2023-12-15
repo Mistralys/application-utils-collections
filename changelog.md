@@ -1,3 +1,7 @@
+## v1.1.1 - Counting records
+- Added the collection `countRecords()` method.
+- Added the `BaseCollection` class.
+
 ## v1.1.0 - Added integer collection
 - Added the integer-based collection and record classes.
 - Added some docs in the readme.
