@@ -16,7 +16,7 @@ use AppUtils\Interfaces\StringPrimaryRecordInterface;
 /**
  * Trait that can be used to implement a string-based item collection
  * without extending the {@see BaseStringPrimaryCollection} class - for
- * example if the class already extends another class.
+ * example, if the class already extends another class.
  *
  * @package App Utils
  * @subpackage Collections
