@@ -13,7 +13,6 @@ use AppUtils\Collections\BaseIntegerPrimaryCollection;
 use AppUtils\Collections\CollectionException;
 use AppUtils\Interfaces\IntegerPrimaryCollectionInterface;
 use AppUtils\Interfaces\IntegerPrimaryRecordInterface;
-use AppUtils\Interfaces\StringPrimaryCollectionInterface;
 
 /**
  * Trait that can be used to implement an integer-based item collection
