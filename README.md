@@ -54,7 +54,7 @@ in the unit test classes:
 - [Integer record](tests/AppUtilsTestClasses/IntegerPrimaryRecordImpl.php)
 - [String collection](tests/AppUtilsTestClasses/IntegerPrimaryCollectionImpl.php)
 - [String record](tests/AppUtilsTestClasses/IntegerPrimaryRecordImpl.php)
-
+- [String collection, with class folder loading](tests/AppUtilsTestClasses/StringPrimaryFolderCollectionImpl.php)
 
 
 [Application Utils]: https://github.com/Mistralys/application-utils
