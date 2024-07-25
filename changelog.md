@@ -1,3 +1,8 @@
+## v1.1.2 - Folder auto-loading
+- Added `RegisterStringFromFolderTrait` to automatically load collection item classes from a folder.
+- Added overridable `sortItems()` to customize the collection item sorting.
+- Dependencies: App Utils Core now requires a minimum version of [v2.2.3](https://github.com/Mistralys/application-utils-core/releases/tag/2.2.3).
+
 ## v1.1.1 - Counting records
 - Added the collection `countRecords()` method.
 - Added the `BaseCollection` class.
