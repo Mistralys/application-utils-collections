@@ -13,6 +13,7 @@ use AppUtils\Collections\BaseIntegerPrimaryCollection;
 use AppUtils\Collections\CollectionException;
 use AppUtils\Interfaces\IntegerPrimaryCollectionInterface;
 use AppUtils\Interfaces\IntegerPrimaryRecordInterface;
+use AppUtils\Interfaces\StringPrimaryRecordInterface;
 
 /**
  * Trait that can be used to implement an integer-based item collection
@@ -45,9 +46,14 @@ trait IntegerPrimaryCollectionTrait
 
         $this->registerItems();
 
-        ksort($this->items);
+        uasort($this->items, array($this, 'sortItems'));
 
         return $this->items;
+    }
+
+    protected function sortItems(IntegerPrimaryRecordInterface $a, IntegerPrimaryRecordInterface $b) : int
+    {
+        return $a->getID() - $b->getID();
     }
 
     abstract protected function registerItems() : void;

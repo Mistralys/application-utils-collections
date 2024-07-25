@@ -44,9 +44,14 @@ trait StringPrimaryCollectionTrait
 
         $this->registerItems();
 
-        ksort($this->items);
+        uasort($this->items, array($this, 'sortItems'));
 
         return $this->items;
+    }
+
+    protected function sortItems(StringPrimaryRecordInterface $a, StringPrimaryRecordInterface $b) : int
+    {
+        return strnatcasecmp($a->getID(), $b->getID());
     }
 
     abstract protected function registerItems() : void;
