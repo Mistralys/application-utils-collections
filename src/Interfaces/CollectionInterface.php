@@ -23,7 +23,7 @@ interface CollectionInterface
     public function getAll() : array;
 
     /**
-     * @return array<int|int,string>
+     * @return array<int|mixed>
      */
     public function getIDs() : array;
 
