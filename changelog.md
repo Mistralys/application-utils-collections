@@ -1,3 +1,7 @@
+## v1.1.3 - Class loader collection (Deprecation)
+- Added the `BaseClassLoaderCollection` to use the class registry for loading classes.
+- Deprecated the trait `RegisterStringFromFolderTrait` in favor of using the class loader collection.
+
 ## v1.1.2 - Folder auto-loading
 - Added `RegisterStringFromFolderTrait` to automatically load collection item classes from a folder.
 - Added overridable `sortItems()` to customize the collection item sorting.
