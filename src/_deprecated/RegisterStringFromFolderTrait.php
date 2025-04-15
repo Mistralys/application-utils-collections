@@ -10,25 +10,16 @@ namespace AppUtils\Traits;
 
 use AppUtils\ClassHelper;
 use AppUtils\ClassHelper\BaseClassHelperException;
-use AppUtils\Collections\BaseStringPrimaryCollection;
 use AppUtils\FileHelper\FolderInfo;
 use AppUtils\FileHelper_Exception;
 use AppUtils\Interfaces\StringPrimaryRecordInterface;
 
 /**
- * Trait that can be used to register all items in a collection
- * from classes loaded from a specific folder.
- *
- * Usage:
- *
- * 1. Create a class that extends {@see BaseStringPrimaryCollection}.
- * 2. Add this trait to the class.
- * 3. Implement the abstract methods.
- *
- * For an example, see {@see \AppUtilsTestClasses\StringPrimaryFolderCollectionImpl}.
+ * DEPRECATED: Use {@see RegisterFolderClassesTrait} instead.
  *
  * @package App Utils
  * @subpackage Collections
+ * @deprecated Use {@see RegisterFolderClassesTrait} instead.
  */
 trait RegisterStringFromFolderTrait
 {
@@ -54,7 +45,7 @@ trait RegisterStringFromFolderTrait
      */
     protected function registerFromClassFolder(FolderInfo $folder, string $referenceClass) : void
     {
-        $classes = ClassHelper::getClassesInFolder($folder, $referenceClass);
+        $classes = ClassHelper::findClassesInRepository($folder, true, $referenceClass);
         foreach($classes as $class) {
             $this->registerItem($this->createItemInstance($class));
         }
