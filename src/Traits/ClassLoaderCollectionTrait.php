@@ -66,7 +66,7 @@ trait ClassLoaderCollectionTrait
     {
         return ClassHelper::findClassesInRepository(
             $this->getClassesFolder(),
-            true,
+            $this->isRecursive(),
             $this->getInstanceOfClassName()
         )
             ->getClasses();

@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package App Utils Tests
+ * @subpackage Collections
+ */
 
 declare(strict_types=1);
 
@@ -6,6 +10,16 @@ namespace AppUtilsTestClasses;
 
 use AppUtils\Collections\BaseStringPrimaryCollection;
 
+/**
+ * Implements a collection of items with a string primary key.
+ *
+ * @package App Utils Tests
+ * @subpackage Collections
+ *
+ * @method StringPrimaryRecordImpl[] getAll()
+ * @method StringPrimaryRecordImpl getByID(string $id)
+ * @method StringPrimaryRecordImpl getDefault()
+ */
 class StringPrimaryCollectionImpl extends BaseStringPrimaryCollection
 {
     public const ITEM_A = 'a';

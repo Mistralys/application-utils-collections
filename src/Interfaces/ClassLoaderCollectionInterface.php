@@ -34,4 +34,10 @@ interface ClassLoaderCollectionInterface extends StringPrimaryCollectionInterfac
      * @return class-string[]
      */
     public function getClassNames() : array;
+
+    /**
+     * Whether classes are loaded recursively from subfolders.
+     * @return bool
+     */
+    public function isRecursive() : bool;
 }

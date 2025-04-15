@@ -14,6 +14,9 @@ use AppUtils\FileHelper\FolderInfo;
 use AppUtilsTestClasses\StringClassesFolder\StringItemC;
 
 /**
+ * Implements an unfiltered class loader collection:
+ * Will load all classes in the specified folder.
+ *
  * @package App Utils Tests
  * @subpackage Collections
  *
@@ -31,6 +34,11 @@ class ClassLoaderCollectionImpl extends BaseClassLoaderCollection
     public function getClassesFolder(): FolderInfo
     {
         return FolderInfo::factory(__DIR__.'/StringClassesFolder');
+    }
+
+    public function isRecursive(): bool
+    {
+        return true;
     }
 
     public function getInstanceOfClassName(): ?string
