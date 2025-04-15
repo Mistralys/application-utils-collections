@@ -50,11 +50,20 @@ contains the `getID()` method with the relevant return type.
 There are example implementations of the string and integer collections
 in the unit test classes:
 
-- [Integer collection](tests/AppUtilsTestClasses/IntegerPrimaryCollectionImpl.php)
+### Items with an integer-based ID
+
+- [Integer collection](tests/AppUtilsTestClasses/IntegerPrimaryCollectionImpl.php) 
 - [Integer record](tests/AppUtilsTestClasses/IntegerPrimaryRecordImpl.php)
+
+### Items with a string-based ID
+
 - [String collection](tests/AppUtilsTestClasses/IntegerPrimaryCollectionImpl.php)
 - [String record](tests/AppUtilsTestClasses/IntegerPrimaryRecordImpl.php)
-- [String collection, with class folder loading](tests/AppUtilsTestClasses/StringPrimaryFolderCollectionImpl.php)
+
+### Dynamic class loading
+
+- [Class folder loading](tests/AppUtilsTestClasses/ClassLoaderCollectionImpl.php)
+- [Class folder loading (filtered)](tests/AppUtilsTestClasses/ClassLoaderCollectionInstanceOfImpl.php)
 
 
 [Application Utils]: https://github.com/Mistralys/application-utils
