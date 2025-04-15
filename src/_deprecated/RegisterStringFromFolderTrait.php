@@ -10,16 +10,17 @@ namespace AppUtils\Traits;
 
 use AppUtils\ClassHelper;
 use AppUtils\ClassHelper\BaseClassHelperException;
+use AppUtils\Collections\BaseClassLoaderCollection;
 use AppUtils\FileHelper\FolderInfo;
 use AppUtils\FileHelper_Exception;
 use AppUtils\Interfaces\StringPrimaryRecordInterface;
 
 /**
- * DEPRECATED: Use {@see RegisterFolderClassesTrait} instead.
+ * DEPRECATED: Use {@see BaseClassLoaderCollection} instead.
  *
  * @package App Utils
  * @subpackage Collections
- * @deprecated Use {@see RegisterFolderClassesTrait} instead.
+ * @deprecated Use the {@see BaseClassLoaderCollection} instead.
  */
 trait RegisterStringFromFolderTrait
 {
