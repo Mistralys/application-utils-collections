@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace AppUtils\Collections;
 
+use AppUtils\ClassHelper;
 use AppUtils\Interfaces\ClassLoaderCollectionInterface;
 use AppUtils\Traits\ClassLoaderCollectionTrait;
 
@@ -18,8 +19,9 @@ use AppUtils\Traits\ClassLoaderCollectionTrait;
  *
  * ## Usage
  *
- * 1. Extend this class
- * 2. Implement the interface methods
+ * 1. Set the class cache folder using {@see ClassHelper::setCacheFolder()}.
+ * 2. Extend this class
+ * 3. Implement the abstract methods
  *
  * To filter the classes, return the class name to filter
  * by in {@see getInstanceOfClassName()}.
