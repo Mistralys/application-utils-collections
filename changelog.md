@@ -1,6 +1,9 @@
 ## v1.1.3 - Class loader collection (Deprecation)
 - Added the `BaseClassLoaderCollection` to use the class registry for loading classes.
 - Deprecated the trait `RegisterStringFromFolderTrait` in favor of using the class loader collection.
+- Code: Added PHPStan utility shell scripts and configuration.
+- Code: Clean up to PHPStan level 9.
+- Dependencies: App Utils Core now requires a minimum version of [v2.3.7](https://github.com/Mistralys/application-utils-core/releases/tag/2.3.7).
 
 ## v1.1.2 - Folder auto-loading
 - Added `RegisterStringFromFolderTrait` to automatically load collection item classes from a folder.
