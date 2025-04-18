@@ -16,9 +16,9 @@ use AppUtils\Traits\StringPrimaryCollectionTrait;
  * Base class for item collections that have a string-based
  * primary key for records.
  *
- * NOTE: If you want to use this functionality without extending
- * this class, you can use the {@see StringPrimaryCollectionTrait}
- * trait instead.
+ * > NOTE: If you want to use this functionality without extending
+ * > this class, you can use the {@see StringPrimaryCollectionTrait}
+ * > trait instead.
  *
  * @package App Utils
  * @subpackage Collections
