@@ -13,7 +13,9 @@ use AppUtils\Collections\BaseStringPrimaryCollection;
 /**
  * This collection has no specific default item.
  * It automatically sets the default item to the
- * first item in the collection.
+ * first item in the collection using the
+ * {@see BaseStringPrimaryCollection::getAutoDefault()}
+ * method.
  *
  * @package App Utils Tests
  * @subpackage Collections
