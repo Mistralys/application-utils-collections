@@ -1,5 +1,6 @@
 ## v1.1.4 - Class loader collection
 - ClassLoader: Added the `BaseClassLoaderCollectionMulti` to load classes from multiple folders.
+- Core: Added the protected method `getAutoDefault()` to handle non-default-aware collections.
 - Core: Added a Composer script to clear the class cache on dump-autoload for the tests.
 
 ## v1.1.3 - Class loader collection (Deprecation)
