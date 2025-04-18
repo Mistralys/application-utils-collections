@@ -21,8 +21,6 @@ use AppUtils\FileHelper\FolderInfo;
  */
 interface ClassLoaderCollectionInterface extends StringPrimaryCollectionInterface
 {
-    public function getClassesFolder() : FolderInfo;
-
     /**
      * If not `NULL`, only instances of this type will be loaded.
      *
@@ -34,6 +32,18 @@ interface ClassLoaderCollectionInterface extends StringPrimaryCollectionInterfac
      * @return class-string[]
      */
     public function getClassNames() : array;
+
+    /**
+     * Gets all folders in which to look for classes.
+     *
+     * > NOTE: If a folder does not exist on disk,
+     * > it will be silently ignored. If this is not
+     * > the desired behavior, check if the folder
+     * > exists in your folder logic.
+     *
+     * @return FolderInfo[]
+     */
+    public function getClassFolders() : array;
 
     /**
      * Whether classes are loaded recursively from subfolders.

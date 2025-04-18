@@ -9,8 +9,9 @@ declare(strict_types=1);
 namespace AppUtils\Collections;
 
 use AppUtils\ClassHelper;
-use AppUtils\Interfaces\ClassLoaderCollectionInterface;
-use AppUtils\Traits\ClassLoaderCollectionTrait;
+use AppUtils\Interfaces\ClassLoaderCollectionSingleInterface;
+use AppUtils\Traits\BaseClassLoaderCollectionTrait;
+use AppUtils\Traits\ClassLoaderCollectionSingleTrait;
 
 /**
  * Collection class that loads its items from classes
@@ -24,12 +25,13 @@ use AppUtils\Traits\ClassLoaderCollectionTrait;
  * 3. Implement the abstract methods
  *
  * To filter the classes, return the class name to filter
- * by in {@see getInstanceOfClassName()}.
+ * by in {@see self::getInstanceOfClassName()}.
  *
  * @package App Utils
  * @subpackage Collections
  */
-abstract class BaseClassLoaderCollection extends BaseStringPrimaryCollection implements ClassLoaderCollectionInterface
+abstract class BaseClassLoaderCollection extends BaseStringPrimaryCollection implements ClassLoaderCollectionSingleInterface
 {
-    use ClassLoaderCollectionTrait;
+    use BaseClassLoaderCollectionTrait;
+    use ClassLoaderCollectionSingleTrait;
 }
