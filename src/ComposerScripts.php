@@ -18,7 +18,7 @@ class ComposerScripts
 {
     public static function clearClassCache() : void
     {
-        echo "Clearing class cache..." . PHP_EOL;
+        echo "Clearing class cache...";
 
         require_once __DIR__ . '/../tests/bootstrap.php';
 
