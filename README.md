@@ -64,6 +64,6 @@ in the unit test classes:
 
 - [Class folder loading](tests/AppUtilsTestClasses/ClassLoaderCollectionImpl.php)
 - [Class folder loading (filtered)](tests/AppUtilsTestClasses/ClassLoaderCollectionInstanceOfImpl.php)
-
+- [Class folder loading (multiple folders)](tests/AppUtilsTestClasses/ClassLoaderCollectionMultiImpl.php)
 
 [Application Utils]: https://github.com/Mistralys/application-utils
