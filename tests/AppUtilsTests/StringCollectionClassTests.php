@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace AppUtilsTests;
 
+use AppUtils\Collections\BaseStringPrimaryCollection;
+use AppUtils\Interfaces\StringPrimaryCollectionInterface;
 use AppUtilsTestClasses\BaseTestCase;
 use AppUtilsTestClasses\IntegerPrimaryCollectionImpl;
+use AppUtilsTestClasses\StringPrimaryCollectionEmptyImpl;
 use AppUtilsTestClasses\StringPrimaryCollectionImpl;
+use AppUtilsTestClasses\StringPrimaryCollectionNoDefaultImpl;
 
 final class StringCollectionClassTests extends BaseTestCase
 {
@@ -49,7 +53,7 @@ final class StringCollectionClassTests extends BaseTestCase
         $this->assertFalse($collection->idExists('unknown item'));
     }
 
-    public function test_getDefault() : void
+    public function test_getDefaultWithSpecificDefaultCollection() : void
     {
         $collection = new StringPrimaryCollectionImpl();
 
@@ -78,5 +82,49 @@ final class StringCollectionClassTests extends BaseTestCase
         $collection = new IntegerPrimaryCollectionImpl();
 
         $this->assertSame(3, $collection->countRecords());
+    }
+
+    /**
+     * The collection uses {@see BaseStringPrimaryCollection::getAutoDefault()}
+     * to determine the default item. This must be the first item
+     * in the collection.
+     */
+    public function test_noSpecificDefaultItem() : void
+    {
+        $collection = new StringPrimaryCollectionNoDefaultImpl();
+
+        $this->assertNotEmpty($collection->getAll());
+
+        $this->assertSame(
+            StringPrimaryCollectionNoDefaultImpl::ITEM_A,
+            $collection->getDefaultID()
+        );
+
+        $this->assertSame(
+            StringPrimaryCollectionNoDefaultImpl::ITEM_A,
+            $collection->getDefault()->getID()
+        );
+    }
+
+    /**
+     * An empty collection is fully functional until you try to
+     * access the default item. This causes an exception because
+     * {@see StringPrimaryCollectionInterface::getByID()} expects
+     * the ID to exist.
+     */
+    public function test_emptyCollection() : void
+    {
+        $collection = new StringPrimaryCollectionEmptyImpl();
+
+        $this->assertEmpty($collection->getAll());
+
+        $this->assertSame(
+            StringPrimaryCollectionInterface::ID_NO_DEFAULT_AVAILABLE,
+            $collection->getDefaultID()
+        );
+
+        $this->expectExceptionCode(StringPrimaryCollectionInterface::ERROR_CODE_RECORD_NOT_FOUND);
+
+        $collection->getDefault();
     }
 }

@@ -4,8 +4,14 @@ declare(strict_types=1);
 
 namespace AppUtilsTests;
 
+use AppUtils\Interfaces\IntegerPrimaryCollectionInterface;
+use AppUtils\Interfaces\StringPrimaryCollectionInterface;
 use AppUtilsTestClasses\BaseTestCase;
+use AppUtilsTestClasses\IntegerPrimaryCollectionEmptyImpl;
 use AppUtilsTestClasses\IntegerPrimaryCollectionImpl;
+use AppUtilsTestClasses\IntegerPrimaryCollectionNoDefaultImpl;
+use AppUtilsTestClasses\StringPrimaryCollectionEmptyImpl;
+use AppUtilsTestClasses\StringPrimaryCollectionNoDefaultImpl;
 
 final class IntegerCollectionClassTests extends BaseTestCase
 {
@@ -77,5 +83,49 @@ final class IntegerCollectionClassTests extends BaseTestCase
         $collection = new IntegerPrimaryCollectionImpl();
 
         $this->assertSame(3, $collection->countRecords());
+    }
+
+    /**
+     * The collection uses {@see BaseIntegerPrimaryCollection::getAutoDefault()}
+     * to determine the default item. This must be the first item
+     * in the collection.
+     */
+    public function test_noSpecificDefaultItem() : void
+    {
+        $collection = new IntegerPrimaryCollectionNoDefaultImpl();
+
+        $this->assertNotEmpty($collection->getAll());
+
+        $this->assertSame(
+            IntegerPrimaryCollectionNoDefaultImpl::ITEM_A,
+            $collection->getDefaultID()
+        );
+
+        $this->assertSame(
+            IntegerPrimaryCollectionNoDefaultImpl::ITEM_A,
+            $collection->getDefault()->getID()
+        );
+    }
+
+    /**
+     * An empty collection is fully functional until you try to
+     * access the default item. This causes an exception because
+     * {@see IntegerPrimaryCollectionInterface::getByID()} expects
+     * the ID to exist.
+     */
+    public function test_emptyCollection() : void
+    {
+        $collection = new IntegerPrimaryCollectionEmptyImpl();
+
+        $this->assertEmpty($collection->getAll());
+
+        $this->assertSame(
+            IntegerPrimaryCollectionInterface::ID_NO_DEFAULT_AVAILABLE,
+            $collection->getDefaultID()
+        );
+
+        $this->expectExceptionCode(IntegerPrimaryCollectionInterface::ERROR_CODE_RECORD_NOT_FOUND);
+
+        $collection->getDefault();
     }
 }
