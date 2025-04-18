@@ -31,6 +31,7 @@ use AppUtils\Traits\IntegerPrimaryCollectionTrait;
 interface IntegerPrimaryCollectionInterface extends CollectionInterface
 {
     public const ERROR_CODE_RECORD_NOT_FOUND = 148101;
+    public const ID_NO_DEFAULT_AVAILABLE = -1;
 
     /**
      * @return object[]
