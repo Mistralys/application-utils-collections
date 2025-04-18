@@ -9,6 +9,9 @@
 
 declare(strict_types=1);
 
+use AppUtils\ClassHelper;
+use AppUtils\FileHelper\FolderInfo;
+
 $autoloader = __DIR__ . '/../vendor/autoload.php';
 
 if(!file_exists($autoloader))
@@ -17,3 +20,5 @@ if(!file_exists($autoloader))
 }
 
 require_once $autoloader;
+
+ClassHelper::setCacheFolder(FolderInfo::factory(__DIR__.'/cache'));
