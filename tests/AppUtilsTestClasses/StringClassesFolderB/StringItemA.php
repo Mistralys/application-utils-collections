@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace AppUtilsTestClasses\StringClassesFolder;
+namespace AppUtilsTestClasses\StringClassesFolderB;
 
 use AppUtilsTestClasses\BaseStringItem;
 
-class StringItemC extends BaseStringItem
+class StringItemA extends BaseStringItem
 {
-    public const ITEM_ID = 'C';
+    public const ITEM_ID = 'A';
 
     public function getID(): string
     {
