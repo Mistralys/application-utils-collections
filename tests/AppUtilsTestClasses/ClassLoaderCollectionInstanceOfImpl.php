@@ -11,7 +11,7 @@ namespace AppUtilsTestClasses;
 use AppUtils\ClassHelper;
 use AppUtils\Collections\BaseClassLoaderCollection;
 use AppUtils\FileHelper\FolderInfo;
-use AppUtilsTestClasses\StringClassesFolder\StringItemA;
+use AppUtilsTestClasses\StringClassesFolderB\StringItemA;
 
 /**
  * Implements a class loader collection that only loads
@@ -33,7 +33,7 @@ class ClassLoaderCollectionInstanceOfImpl extends BaseClassLoaderCollection
 
     public function getClassesFolder(): FolderInfo
     {
-        return FolderInfo::factory(__DIR__.'/StringClassesFolder');
+        return FolderInfo::factory(__DIR__ . '/StringClassesFolderB');
     }
 
     public function isRecursive(): bool

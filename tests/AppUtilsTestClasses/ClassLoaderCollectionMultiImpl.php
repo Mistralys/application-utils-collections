@@ -9,13 +9,13 @@ declare(strict_types=1);
 namespace AppUtilsTestClasses;
 
 use AppUtils\ClassHelper;
-use AppUtils\Collections\BaseClassLoaderCollection;
+use AppUtils\Collections\BaseClassLoaderCollectionMulti;
 use AppUtils\FileHelper\FolderInfo;
 use AppUtilsTestClasses\StringClassesFolderB\StringItemC;
 
 /**
- * Implements an unfiltered class loader collection:
- * Will load all classes in the specified folder.
+ * Implements an unfiltered class loader collection
+ * that will load classes from multiple folders.
  *
  * @package App Utils Tests
  * @subpackage Collections
@@ -24,16 +24,25 @@ use AppUtilsTestClasses\StringClassesFolderB\StringItemC;
  * @method BaseStringItem getByID(string $id)
  * @method BaseStringItem getDefault()
  */
-class ClassLoaderCollectionImpl extends BaseClassLoaderCollection
+class ClassLoaderCollectionMultiImpl extends BaseClassLoaderCollectionMulti
 {
     public function getDefaultID(): string
     {
         return StringItemC::ITEM_ID;
     }
 
-    public function getClassesFolder(): FolderInfo
+    public function getClassFolders(): array
     {
-        return FolderInfo::factory(__DIR__ . '/StringClassesFolderB');
+        return array(
+            FolderInfo::factory(__DIR__ . '/StringClassesFolderB'),
+            FolderInfo::factory(__DIR__ . '/StringClassesFolderA'),
+
+            // Duplicate folder: Must not create duplicate class entries
+            FolderInfo::factory(__DIR__ . '/StringClassesFolderB'),
+
+            // Non-existent folder, must be ignored
+            FolderInfo::factory('/NonExistentFolder')
+        );
     }
 
     public function isRecursive(): bool
