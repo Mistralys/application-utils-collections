@@ -13,7 +13,6 @@ use AppUtils\Collections\BaseIntegerPrimaryCollection;
 use AppUtils\Collections\CollectionException;
 use AppUtils\Interfaces\IntegerPrimaryCollectionInterface;
 use AppUtils\Interfaces\IntegerPrimaryRecordInterface;
-use AppUtils\Interfaces\StringPrimaryRecordInterface;
 
 /**
  * Trait that can be used to implement an integer-based item collection
@@ -118,5 +117,27 @@ trait IntegerPrimaryCollectionTrait
     public function getIDs(): array
     {
         return array_keys($this->initItems());
+    }
+
+    /**
+     * Utility method that can be used in the {@see self::getDefaultID()}
+     * method if no specific default ID is available. Will automatically
+     * use the first item in the collection as the default ID if the
+     * list is not empty.
+     *
+     * @return int
+     */
+    protected function getAutoDefault() : int
+    {
+        // Important: Init the items here to ensure that the
+        // collection is loaded and sorted before we try to
+        // access the first item.
+        $items = $this->initItems();
+
+        if(!empty($items)) {
+            return array_key_first($items);
+        }
+
+        return IntegerPrimaryCollectionInterface::ID_NO_DEFAULT_AVAILABLE;
     }
 }

@@ -114,4 +114,26 @@ trait StringPrimaryCollectionTrait
     {
         return array_keys($this->initItems());
     }
+
+    /**
+     * Utility method that can be used in the {@see self::getDefaultID()}
+     * method if no specific default ID is available. Will automatically
+     * use the first item in the collection as the default ID if the
+     * list is not empty.
+     *
+     * @return string
+     */
+    protected function getAutoDefault() : string
+    {
+        // Important: Init the items here to ensure that the
+        // collection is loaded and sorted before we try to
+        // access the first item.
+        $items = $this->initItems();
+
+        if(!empty($items)) {
+            return array_key_first($items);
+        }
+
+        return StringPrimaryCollectionInterface::ID_NO_DEFAULT_AVAILABLE;
+    }
 }
