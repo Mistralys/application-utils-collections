@@ -1,5 +1,9 @@
+## v1.1.4 - Class loader collection
+- ClassLoader: Added the `BaseClassLoaderCollectionMulti` to load classes from multiple folders.
+- Core: Added a Composer script to clear the class cache on dump-autoload for the tests.
+
 ## v1.1.3 - Class loader collection (Deprecation)
-- Added the `BaseClassLoaderCollection` to use the class registry for loading classes.
+- ClassLoader: Added the `BaseClassLoaderCollection` to use the class registry for loading classes.
 - Code: Added PHPStan utility shell scripts and configuration.
 - Code: Clean up to PHPStan level 9.
 - Dependencies: App Utils Core now requires a minimum version of [v2.3.7](https://github.com/Mistralys/application-utils-core/releases/tag/2.3.7).
