@@ -54,11 +54,13 @@ in the unit test classes:
 
 - [Integer collection](tests/AppUtilsTestClasses/IntegerPrimaryCollectionImpl.php) 
 - [Integer record](tests/AppUtilsTestClasses/IntegerPrimaryRecordImpl.php)
+- [Non-default-aware collection](tests/AppUtilsTestClasses/IntegerPrimaryCollectionNoDefaultImpl.php)
 
 ### Items with a string-based ID
 
 - [String collection](tests/AppUtilsTestClasses/IntegerPrimaryCollectionImpl.php)
 - [String record](tests/AppUtilsTestClasses/IntegerPrimaryRecordImpl.php)
+- [Non-default-aware collection](tests/AppUtilsTestClasses/StringPrimaryCollectionNoDefaultImpl.php)
 
 ### Dynamic class loading
 
