@@ -1,3 +1,6 @@
+## v1.1.5 - Class loader collection
+- ClassLoader: Added overridable `getClassRepository()` to work with a custom class repository instance.
+
 ## v1.1.4 - Class loader collection
 - ClassLoader: Added the `BaseClassLoaderCollectionMulti` to load classes from multiple folders.
 - Core: Added the protected method `getAutoDefault()` to handle non-default-aware collections.
