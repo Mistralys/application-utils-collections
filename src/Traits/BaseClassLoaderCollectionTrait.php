@@ -11,6 +11,7 @@ namespace AppUtils\Traits;
 use AppUtils\ClassHelper;
 use AppUtils\ClassHelper\BaseClassHelperException;
 use AppUtils\ClassHelper\Repository\ClassRepositoryException;
+use AppUtils\ClassHelper\Repository\ClassRepositoryManager;
 use AppUtils\Collections\BaseClassLoaderCollection;
 use AppUtils\Collections\CollectionException;
 use AppUtils\ConvertHelper;
@@ -27,6 +28,16 @@ use AppUtils\Interfaces\StringPrimaryRecordInterface;
  * 2. Use either the trait {@see ClassLoaderCollectionSingleTrait} or {@see ClassLoaderCollectionMultiTrait}.
  * 3. Implement either the interface {@see ClassLoaderCollectionSingleInterface} or {@see ClassLoaderCollectionMultiInterface}.
  * 4. Implement the abstract methods.
+ *
+ * ## Custom class repository
+ *
+ * The class loader will use the global class repository manager
+ * that relies on the Class Helper's cache folder being set via
+ * {@see ClassHelper::setCacheFolder()}.
+ *
+ * Override the {@see self::getClassRepository()} method if you
+ * want to use a custom class repository manager instance with
+ * a different cache folder.
  *
  * @package App Utils
  * @subpackage Collections
@@ -51,10 +62,11 @@ trait BaseClassLoaderCollectionTrait
 
     /**
      * @throws CollectionException {@see CollectionException::ERROR_CLASS_CACHE_FOLDER_NOT_SET}
+     * @throws ClassRepositoryException
      */
     private function requireCacheFolderIsSet() : void
     {
-        if (ClassHelper::getCacheFolder() !== null) {
+        if ($this->getClassRepository()->getCacheFolder()->exists()) {
             return;
         }
 
@@ -66,6 +78,20 @@ trait BaseClassLoaderCollectionTrait
             ),
             CollectionException::ERROR_CLASS_CACHE_FOLDER_NOT_SET
         );
+    }
+
+    /**
+     * Overridable method that can be used to work with
+     * a custom class repository manager instance instead
+     * of the default one.
+     *
+     * @overridable
+     * @return ClassRepositoryManager
+     * @throws ClassRepositoryException
+     */
+    protected function getClassRepository() : ClassRepositoryManager
+    {
+        return ClassHelper::getRepositoryManager()->createDefault();
     }
 
     /**
@@ -84,7 +110,7 @@ trait BaseClassLoaderCollectionTrait
 
             array_push(
                 $classes,
-                ...ClassHelper::findClassesInRepository(
+                ...$this->getClassRepository()->findClassesInFolder(
                     $folder,
                     $this->isRecursive(),
                     $this->getInstanceOfClassName()
