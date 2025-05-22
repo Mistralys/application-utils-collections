@@ -1,3 +1,6 @@
+## v1.1.6 - Improved exception
+- Collections: The record ID not found exception has been improved with more information.
+
 ## v1.1.5 - Class loader collection
 - ClassLoader: Added overridable `getClassRepository()` to work with a custom class repository instance.
 - Dependencies: App Utils Core now requires a minimum version of [v2.3.11](https://github.com/Mistralys/application-utils-core/releases/tag/2.3.11).
