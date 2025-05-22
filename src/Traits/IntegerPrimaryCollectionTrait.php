@@ -11,6 +11,7 @@ namespace AppUtils\Traits;
 
 use AppUtils\Collections\BaseIntegerPrimaryCollection;
 use AppUtils\Collections\CollectionException;
+use AppUtils\Collections\RecordNotExistsException;
 use AppUtils\Interfaces\IntegerPrimaryCollectionInterface;
 use AppUtils\Interfaces\IntegerPrimaryRecordInterface;
 
@@ -94,14 +95,7 @@ trait IntegerPrimaryCollectionTrait
             return $items[$id];
         }
 
-        throw new CollectionException(
-            'Collection record does not exist.',
-            sprintf(
-                'The collection record with ID "%s" does not exist.',
-                $id
-            ),
-            IntegerPrimaryCollectionInterface::ERROR_CODE_RECORD_NOT_FOUND
-        );
+        throw new RecordNotExistsException($this, $id, IntegerPrimaryCollectionInterface::ERROR_CODE_RECORD_NOT_FOUND);
     }
 
     public function idExists(int $id) : bool
