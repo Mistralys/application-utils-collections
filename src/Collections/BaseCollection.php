@@ -10,7 +10,6 @@ namespace AppUtils\Collections;
 
 use AppUtils\Collections\Events\CollectionEventInterface;
 use AppUtils\Collections\Events\ItemsInitializedEvent;
-use AppUtils\Interfaces\CollectionInterface;
 
 /**
  * Base class for all collection types.
@@ -18,7 +17,7 @@ use AppUtils\Interfaces\CollectionInterface;
  * @package App Utils
  * @subpackage Collections
  */
-abstract class BaseCollection implements CollectionInterface
+abstract class BaseCollection implements CollectionEventsInterface
 {
     protected array $eventListeners = array();
 
