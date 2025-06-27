@@ -1,6 +1,6 @@
 # AppUtils - Collections
 
-Interfaces, traits and classes for handling static item collections,
+Interfaces, traits and classes for handling item collections,
 similar to Enums and with useful getter methods. 
 
 In essence, it allows creating collections like this with a 
@@ -63,6 +63,13 @@ in the unit test classes:
 - [Non-default-aware collection](tests/AppUtilsTestClasses/StringPrimaryCollectionNoDefaultImpl.php)
 
 ### Dynamic class loading
+
+This specialized collection loads all classes from a folder that match a 
+given interface or class name, instantiates them, and gives access to the
+resulting objects. 
+
+Fueled by AppUtils' ClassHelper class loading mechanism, it is a powerful, 
+fire-and-forget tool that helps with building dynamic applications. 
 
 - [Class folder loading](tests/AppUtilsTestClasses/ClassLoaderCollectionImpl.php)
 - [Class folder loading (filtered)](tests/AppUtilsTestClasses/ClassLoaderCollectionInstanceOfImpl.php)
