@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace AppUtils\Traits;
 
 use AppUtils\Collections\CollectionException;
+use AppUtils\Collections\Events\ItemsInitializedEvent;
 use AppUtils\Collections\RecordNotExistsException;
 use AppUtils\Interfaces\StringPrimaryCollectionInterface;
 use AppUtils\Interfaces\StringPrimaryRecordInterface;
@@ -46,6 +47,8 @@ trait StringPrimaryCollectionTrait
         $this->registerItems();
 
         uasort($this->items, array($this, 'sortItems'));
+
+        $this->triggerEvent(new ItemsInitializedEvent($this));
 
         return $this->items;
     }
