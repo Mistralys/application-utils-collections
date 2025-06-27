@@ -75,4 +75,23 @@ fire-and-forget tool that helps with building dynamic applications.
 - [Class folder loading (filtered)](tests/AppUtilsTestClasses/ClassLoaderCollectionInstanceOfImpl.php)
 - [Class folder loading (multiple folders)](tests/AppUtilsTestClasses/ClassLoaderCollectionMultiImpl.php)
 
+### Events
+
+Items in a collection are initialized on demand. To be able to react to this, 
+the collections offer the `onItemsInitialized()` method, which can be used to
+register a listener that is called when the items are initialized.
+
+```php
+use AppUtils\Collections\Events\ItemsInitializedEvent;use AppUtilsTestClasses\StringPrimaryCollectionImpl;
+
+$collection = new StringPrimaryCollectionImpl();
+
+// Register listeners before accessing the items
+$collection->onItemsInitialized(function(ItemsInitializedEvent $event) : void {
+    // Do something
+});
+
+$collection->getAll(); // This, for example, will trigger the event
+```
+
 [Application Utils]: https://github.com/Mistralys/application-utils
