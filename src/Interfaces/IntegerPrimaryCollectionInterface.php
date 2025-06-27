@@ -13,7 +13,7 @@ use AppUtils\Collections\BaseIntegerPrimaryCollection;
 use AppUtils\Traits\IntegerPrimaryCollectionTrait;
 
 /**
- * Interface for classes that can be used as collections,
+ * Interface for classes that can be used as collections
  * with string-based record primary keys.
  *
  * To use this interface, either:

@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package App Utils
+ * @subpackage Collections
+ */
 
 declare(strict_types=1);
 
@@ -6,6 +10,12 @@ namespace AppUtils\Collections;
 
 use AppUtils\Interfaces\CollectionInterface;
 
+/**
+ * Interface for the available item collections that support events.
+ *
+ * @package App Utils
+ * @subpackage Collections
+ */
 interface CollectionEventsInterface extends CollectionInterface
 {
     /**
