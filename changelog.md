@@ -1,3 +1,6 @@
+## v1.1.8 - Collection events
+- Collections: Split off the event methods into a separate interface to avoid event implementation conflicts.
+
 ## v1.1.7 - Collection events
 - Collections: Added a collection init event that can be listened to.
 
