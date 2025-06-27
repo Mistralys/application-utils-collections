@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace AppUtils\Interfaces;
 
-use AppUtils\Collections\Events\ItemsInitializedEvent;
-
 /**
  * Interface for classes that can be used as collections.
  *
