@@ -1,3 +1,6 @@
+## v1.1.7 - Collection events
+- Collections: Added a collection init event that can be listened to.
+
 ## v1.1.6 - Improved exception
 - Collections: The record ID not found exception has been improved with more information.
 
