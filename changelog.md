@@ -1,3 +1,6 @@
+## v1.1.9 - Class loader filtering
+- ClassLoader: `createItemInstance()` can now return `NULL` to ignore classes following the application's logic.
+
 ## v1.1.8 - Collection events
 - Collections: Split off the event methods into a separate interface to avoid event implementation conflicts with other event handling systems.
 
