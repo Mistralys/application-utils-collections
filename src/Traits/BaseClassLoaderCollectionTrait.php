@@ -55,8 +55,13 @@ trait BaseClassLoaderCollectionTrait
     {
         $this->requireCacheFolderIsSet();
 
-        foreach($this->getClassNames() as $class) {
-            $this->registerItem($this->createItemInstance($class));
+        foreach($this->getClassNames() as $class)
+        {
+            $instance = $this->createItemInstance($class);
+
+            if($instance !== null) {
+                $this->registerItem($instance);
+            }
         }
     }
 
@@ -130,8 +135,12 @@ trait BaseClassLoaderCollectionTrait
      * Creates an instance of the target item class.
      * This allows passing any required constructor parameters.
      *
+     * > NOTE: Returning `NULL` will skip the item, which
+     * > is useful to filter out classes according to your
+     * > needs.
+     *
      * @param class-string $class
-     * @return StringPrimaryRecordInterface
+     * @return StringPrimaryRecordInterface|NULL
      */
-    abstract protected function createItemInstance(string $class) : StringPrimaryRecordInterface;
+    abstract protected function createItemInstance(string $class) : ?StringPrimaryRecordInterface;
 }
