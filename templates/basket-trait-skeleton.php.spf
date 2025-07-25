@@ -38,6 +38,18 @@ use AppUtils\Interfaces\{COLLECTION_PREFIX}RecordInterface;
  */
 trait {COLLECTION_PREFIX}BasketTrait
 {
+    protected function tryRegisterItem(CollectionRecordInterface $item) : bool
+    {
+        // Overridden to verify if the item is of one of the allowed types
+        foreach($this->getAllowedItemClasses() as $class) {
+            if($item instanceof $class) {
+                return parent::tryRegisterItem($item);
+            }
+        }
+
+        return false;
+    }
+
     protected function importInitialItem(CollectionRecordInterface $subject) : void
     {
         if($subject instanceof {COLLECTION_PREFIX}RecordInterface) {
