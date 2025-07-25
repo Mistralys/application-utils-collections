@@ -102,4 +102,9 @@ interface BasketInterface extends CollectionInterface
      * @return int
      */
     public function onItemRemoved(callable $listener): int;
+
+    /**
+     * @return class-string<CollectionRecordInterface>[]
+     */
+    public function getAllowedItemClasses() : array;
 }
