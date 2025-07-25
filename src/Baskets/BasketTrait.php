@@ -15,7 +15,7 @@ use AppUtils\Interfaces\CollectionRecordInterface;
 
 /**
  * Trait that can be used to implement a basket of items without
- * extending the {@see StringPrimaryBasket} or {@see IntegerPrimaryBasket}
+ * extending the {@see GenericStringPrimaryBasket} or {@see GenericIntegerPrimaryBasket}
  * classes - for example, if your class already extends another class.
  *
  * For individual instructions, please see:

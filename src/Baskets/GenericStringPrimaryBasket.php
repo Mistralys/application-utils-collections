@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace AppUtils\Baskets;
 
 use AppUtils\Collections\BaseStringPrimaryCollection;
+use AppUtils\Interfaces\StringPrimaryRecordInterface;
 
 /**
  * Basket-like collection for records with string-based primary keys.
@@ -16,6 +17,11 @@ use AppUtils\Collections\BaseStringPrimaryCollection;
  * adding and removing items freely.
  *
  * It can be instantiated directly using {@see self::create()} or extended.
+ *
+ * > **NOTE**: This class only checks the primary key type of the records,
+ * > it does not restrict the item classes to a specific type. In essence,
+ * > as long as items implement {@see StringPrimaryRecordInterface}, they
+ * > can be added to this basket.
  *
  * ## Trait variant
  *
@@ -26,7 +32,7 @@ use AppUtils\Collections\BaseStringPrimaryCollection;
  * @subpackage Collections
  * @phpstan-import-type AnyCollectionRecord from BasketInterface
  */
-class StringPrimaryBasket extends BaseStringPrimaryCollection implements StringPrimaryBasketInterface
+class GenericStringPrimaryBasket extends BaseStringPrimaryCollection implements StringPrimaryBasketInterface
 {
     use BasketTrait;
     use StringPrimaryBasketTrait;
@@ -38,10 +44,17 @@ class StringPrimaryBasket extends BaseStringPrimaryCollection implements StringP
 
     /**
      * @param AnyCollectionRecord ...$initialRecords A collection, a record, or an array of records or collections. All other types will be ignored.
-     * @return StringPrimaryBasket
+     * @return GenericStringPrimaryBasket
      */
-    public static function create(...$initialRecords): StringPrimaryBasket
+    public static function create(...$initialRecords): GenericStringPrimaryBasket
     {
         return new self($initialRecords);
+    }
+
+    public function getAllowedItemClasses(): array
+    {
+        return array(
+            StringPrimaryRecordInterface::class
+        );
     }
 }
