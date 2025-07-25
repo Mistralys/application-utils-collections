@@ -1,3 +1,10 @@
+## v1.2.0 - Basket Collections
+- Baskets: Added basket-like collections to handle items that can be added and removed.
+- Collections: Improved some type handling and documentation.
+- Build: Added the `composer build` command.
+- Build: Now dynamically generating traits to reduce maintenance overhead.
+- PHPStan: Clean up to level 9.
+
 ## v1.1.9 - Class loader filtering
 - ClassLoader: `createItemInstance()` can now return `NULL` to ignore classes following the application's logic.
 
