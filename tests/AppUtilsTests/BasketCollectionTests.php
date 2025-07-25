@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace AppUtilsTests;
 
-use AppUtils\Baskets\IntegerPrimaryBasket;
-use AppUtils\Baskets\StringPrimaryBasket;
+use AppUtils\Baskets\GenericIntegerPrimaryBasket;
+use AppUtils\Baskets\GenericStringPrimaryBasket;
 use AppUtils\Collections\Events\ItemRemovedEvent;
 use AppUtils\Interfaces\CollectionInterface;
 use AppUtilsTestClasses\BaseTestCase;
 use AppUtilsTestClasses\IntegerPrimaryRecordImpl;
+use AppUtilsTestClasses\SpecificItemBasketImpl;
+use AppUtilsTestClasses\SpecificItemImpl;
 use AppUtilsTestClasses\StringPrimaryRecordImpl;
 use stdClass;
 
@@ -17,7 +19,7 @@ final class BasketCollectionTests extends BaseTestCase
 {
     public function test_emptyByDefault() : void
     {
-        $collection = new StringPrimaryBasket();
+        $collection = new GenericStringPrimaryBasket();
 
         $this->assertEmpty($collection->getAll());
         $this->assertSame(0, $collection->countRecords());
@@ -25,7 +27,7 @@ final class BasketCollectionTests extends BaseTestCase
 
     public function test_addItem() : void
     {
-        $collection = new StringPrimaryBasket();
+        $collection = new GenericStringPrimaryBasket();
 
         $collection->addItem(new StringPrimaryRecordImpl('foo'));
 
@@ -35,7 +37,7 @@ final class BasketCollectionTests extends BaseTestCase
 
     public function test_addMultipleItems() : void
     {
-        $collection = new StringPrimaryBasket();
+        $collection = new GenericStringPrimaryBasket();
 
         $collection->addItems(array(
             new StringPrimaryRecordImpl('foo'),
@@ -49,13 +51,13 @@ final class BasketCollectionTests extends BaseTestCase
 
     public function test_addAny() : void
     {
-        $this->assertRecordCount(0, StringPrimaryBasket::create()->addAny());
+        $this->assertRecordCount(0, GenericStringPrimaryBasket::create()->addAny());
 
-        $this->assertRecordCount(1, StringPrimaryBasket::create()->addAny(new StringPrimaryRecordImpl('foo')));
+        $this->assertRecordCount(1, GenericStringPrimaryBasket::create()->addAny(new StringPrimaryRecordImpl('foo')));
 
         $this->assertRecordCount(
             2,
-            StringPrimaryBasket::create()->addAny(
+            GenericStringPrimaryBasket::create()->addAny(
                 new StringPrimaryRecordImpl('bar'),
                 new stdClass(),
                 123,
@@ -73,7 +75,7 @@ final class BasketCollectionTests extends BaseTestCase
 
         $this->assertRecordCount(
             2,
-            StringPrimaryBasket::create()->addAny(array(
+            GenericStringPrimaryBasket::create()->addAny(array(
                 new StringPrimaryRecordImpl('qux'),
                 new StringPrimaryRecordImpl('quux')
             ))
@@ -87,14 +89,14 @@ final class BasketCollectionTests extends BaseTestCase
 
     public function test_addCollectionWithCompatibleItems() : void
     {
-        $collectionA = new StringPrimaryBasket(array(
+        $collectionA = new GenericStringPrimaryBasket(array(
             new StringPrimaryRecordImpl('foo'),
             new StringPrimaryRecordImpl('bar')
         ));
 
         $this->assertCount(2, $collectionA->getAll());
 
-        $collectionB = new StringPrimaryBasket(array(
+        $collectionB = new GenericStringPrimaryBasket(array(
             new StringPrimaryRecordImpl('baz'),
             new StringPrimaryRecordImpl('qux')
         ));
@@ -106,12 +108,12 @@ final class BasketCollectionTests extends BaseTestCase
 
     public function test_addCollectionWithIncompatibleItems() : void
     {
-        $collectionA = new StringPrimaryBasket(array(
+        $collectionA = new GenericStringPrimaryBasket(array(
             new StringPrimaryRecordImpl('foo'),
             new StringPrimaryRecordImpl('bar')
         ));
 
-        $collectionB = new IntegerPrimaryBasket(array(
+        $collectionB = new GenericIntegerPrimaryBasket(array(
             new IntegerPrimaryRecordImpl(333),
             new IntegerPrimaryRecordImpl(444)
         ));
@@ -123,7 +125,7 @@ final class BasketCollectionTests extends BaseTestCase
 
     public function test_createWithAny() : void
     {
-        $collection = StringPrimaryBasket::create(
+        $collection = GenericStringPrimaryBasket::create(
             new StringPrimaryRecordImpl('foo'),
             new IntegerPrimaryRecordImpl(333),
             null,
@@ -135,7 +137,7 @@ final class BasketCollectionTests extends BaseTestCase
                     new StringPrimaryRecordImpl('lopos'),
                 )
             ),
-            new StringPrimaryBasket(array(
+            new GenericStringPrimaryBasket(array(
                 new StringPrimaryRecordImpl('baz')
             ))
         );
@@ -151,7 +153,7 @@ final class BasketCollectionTests extends BaseTestCase
     {
         $triggerCount = 0;
 
-        $collection = StringPrimaryBasket::create();
+        $collection = GenericStringPrimaryBasket::create();
 
         $collection->onItemAdded(function() use (&$triggerCount) : void {
             $triggerCount++;
@@ -168,7 +170,7 @@ final class BasketCollectionTests extends BaseTestCase
     {
         $triggerCount = 0;
 
-        $collection = StringPrimaryBasket::create(
+        $collection = GenericStringPrimaryBasket::create(
             new StringPrimaryRecordImpl('foo'),
             new StringPrimaryRecordImpl('bar')
         );
@@ -182,9 +184,20 @@ final class BasketCollectionTests extends BaseTestCase
         $this->assertSame(2, $triggerCount, 'Events should have been triggered for the initial items.');
     }
 
+    public function test_specificItemBasketOnlyAcceptsAllowedItems() : void
+    {
+        $basket = new SpecificItemBasketImpl();
+
+        $basket->addItem(new StringPrimaryRecordImpl('foo'));
+        $basket->addItem(new SpecificItemImpl('bar'));
+
+        $this->assertCount(1, $basket->getAll());
+        $this->assertSame(array('bar'), $basket->getIDs());
+    }
+
     public function test_removeItem() : void
     {
-        $collection = new StringPrimaryBasket();
+        $collection = new GenericStringPrimaryBasket();
 
         $item = new StringPrimaryRecordImpl('foo');
         $collection->addItem($item);
@@ -195,7 +208,7 @@ final class BasketCollectionTests extends BaseTestCase
 
     public function test_removeItems() : void
     {
-        $collection = new StringPrimaryBasket();
+        $collection = new GenericStringPrimaryBasket();
 
         $collection->addItems(array(
             new StringPrimaryRecordImpl('foo'),
@@ -209,7 +222,7 @@ final class BasketCollectionTests extends BaseTestCase
 
     public function test_itemAddedEvent() : void
     {
-        $collection = new StringPrimaryBasket();
+        $collection = new GenericStringPrimaryBasket();
         $eventTriggered = false;
 
         $collection->onItemAdded(function() use (&$eventTriggered) : void {
@@ -223,7 +236,7 @@ final class BasketCollectionTests extends BaseTestCase
 
     public function test_itemRemovedEvent() : void
     {
-        $collection = new StringPrimaryBasket();
+        $collection = new GenericStringPrimaryBasket();
         $eventTriggered = false;
 
         $collection->onItemRemoved(function(ItemRemovedEvent $event) use (&$eventTriggered) : void {
