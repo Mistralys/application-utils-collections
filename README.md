@@ -1,10 +1,23 @@
 # AppUtils - Collections
 
 Interfaces, traits and classes for handling item collections,
-similar to Enums and with useful getter methods. 
+similar to Enums but with useful getter methods. 
 
-In essence, it allows creating collections like this with a 
-minimum of code:
+> This is part of the [Application Utils][] ecology.
+
+## Feature Overview
+
+The collection classes come in several flavors:
+
+- Separate collections for records with string and integer IDs.
+- Class loader collections that instantiate classes from one or more folders.
+- Basket-like collections that allow freely adding and removing items.
+
+## Basic Example
+
+Let's say you want to create a collection of herbs. A string-based collection 
+is ideal in this case, each herb being an object that can easily be extended
+with additional properties and methods.
 
 ```php
 $basil = Herbs::getInstance()->getByID(Herbs::BASIL);
@@ -19,8 +32,6 @@ foreach(Herbs::getInstance()->getAll() as $herb) {
 }
 ```
 
-> This is part of the [Application Utils][] ecology.
-
 ## The Principle
 
 The basic principle is to have a collection class for a data type,
@@ -28,9 +39,7 @@ which knows all the possible values for that type, and a record class
 that represents a single value of that type.
 
 The collections and records are distinguished by the return type of
-their `getID()` method. 
-
-> Currently, only string and integer types are supported.
+their `getID()` method (`int` or `string`). 
 
 ## Implementation
 
@@ -43,7 +52,8 @@ There are two ways to implement collections:
 > extend another class.
 
 The records have no abstract base class, only an interface that
-contains the `getID()` method with the relevant return type.
+contains the `getID()` method with the relevant return type, e.g.
+`StringPrimaryRecordInterface`.
 
 ## Usage
 
@@ -61,6 +71,29 @@ in the unit test classes:
 - [String collection](tests/AppUtilsTestClasses/IntegerPrimaryCollectionImpl.php)
 - [String record](tests/AppUtilsTestClasses/IntegerPrimaryRecordImpl.php)
 - [Non-default-aware collection](tests/AppUtilsTestClasses/StringPrimaryCollectionNoDefaultImpl.php)
+
+### Basket collections
+
+These collections allow adding and removing items freely, similar to a basket.
+They do not contain a fixed set of items, but rather allow dynamically storing
+and retrieving items.
+
+- [String Basket](/src/Collections/StringPrimaryBasket.php)
+- [Integer Basket](/src/Collections/IntegerPrimaryBasket.php)
+
+These classes can be used without extending them, but can be extended to add
+custom functionality.
+
+```php
+use AppUtils\Baskets\IntegerPrimaryBasket;
+
+$products = IntegerPrimaryBasket::create();
+
+$products->addItem(new Product(289, 'Product A'));
+$products->addItem(new Product(290, 'Product B'));
+
+$products->removeItem(290);
+```
 
 ### Dynamic class loading
 
