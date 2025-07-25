@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace AppUtilsTests;
 
+use AppUtils\Collections\CollectionEventsInterface;
 use AppUtils\Collections\Events\ItemsInitializedEvent;
-use AppUtils\Interfaces\CollectionInterface;
 use AppUtilsTestClasses\BaseTestCase;
 use AppUtilsTestClasses\IntegerPrimaryCollectionImpl;
 use AppUtilsTestClasses\StringPrimaryCollectionImpl;
@@ -26,7 +26,7 @@ final class EventTests extends BaseTestCase
         $this->assertCollectionTriggersInitialization($collection);
     }
 
-    protected function assertCollectionTriggersInitialization(CollectionInterface $collection) : void
+    protected function assertCollectionTriggersInitialization(CollectionEventsInterface $collection) : void
     {
         $triggered = false;
 
