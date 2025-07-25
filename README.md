@@ -85,9 +85,9 @@ These classes can be used without extending them, but can be extended to add
 custom functionality.
 
 ```php
-use AppUtils\Baskets\IntegerPrimaryBasket;
+use AppUtils\Baskets\GenericIntegerPrimaryBasket;
 
-$products = IntegerPrimaryBasket::create();
+$products = GenericIntegerPrimaryBasket::create();
 
 $products->addItem(new Product(289, 'Product A'));
 $products->addItem(new Product(290, 'Product B'));
