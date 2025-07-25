@@ -22,5 +22,9 @@ namespace AppUtils\Interfaces;
  */
 interface CollectionRecordInterface
 {
-
+    /**
+     * Returns the ID of the record.
+     * @return int|string The ID of the record.
+     */
+    public function getID(); // No type hint here to let the implementing class decide on the type.
 }
