@@ -34,7 +34,7 @@ interface StringPrimaryCollectionInterface extends CollectionInterface
     public const ID_NO_DEFAULT_AVAILABLE = 'no-default-available';
 
     /**
-     * @return object[]
+     * @return StringPrimaryRecordInterface[]
      */
     public function getAll() : array;
 

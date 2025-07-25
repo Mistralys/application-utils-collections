@@ -34,7 +34,7 @@ interface IntegerPrimaryCollectionInterface extends CollectionInterface
     public const ID_NO_DEFAULT_AVAILABLE = -1;
 
     /**
-     * @return object[]
+     * @return IntegerPrimaryRecordInterface[]
      */
     public function getAll() : array;
 
