@@ -30,11 +30,6 @@ use AppUtils\Interfaces\{COLLECTION_PREFIX}RecordInterface;
  */
 trait {COLLECTION_PREFIX}CollectionTrait
 {
-    public function getItemInterface() : string
-    {
-        return {COLLECTION_PREFIX}RecordInterface::class;
-    }
-
     /**
      * @var array<{PHP_DATA_TYPE},{COLLECTION_PREFIX}RecordInterface>|NULL
      */
