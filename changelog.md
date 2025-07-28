@@ -1,3 +1,6 @@
+## v1.2.1 - Basket improvements
+- Baskets: The `create()` static method now uses `static` to use it in extending classes.
+
 ## v1.2.0 - Basket Collections
 - Baskets: Added basket-like collections to handle items that can be added and removed.
 - Collections: Improved some type handling and documentation.
