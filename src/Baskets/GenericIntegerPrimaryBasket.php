@@ -30,6 +30,11 @@ use AppUtils\Interfaces\IntegerPrimaryRecordInterface;
  *
  * @package App Utils
  * @subpackage Collections
+ *
+ * @method IntegerPrimaryRecordInterface[] getAll()
+ * @method IntegerPrimaryRecordInterface getByID(int $id)
+ *
+ * @phpstan-consistent-constructor Constructors may be freely overridden, so `static::` can safely be used in {@see self::create()}.
  * @phpstan-import-type AnyCollectionRecord from BasketInterface
  */
 class GenericIntegerPrimaryBasket extends BaseIntegerPrimaryCollection implements IntegerPrimaryBasketInterface
@@ -46,9 +51,9 @@ class GenericIntegerPrimaryBasket extends BaseIntegerPrimaryCollection implement
      * @param AnyCollectionRecord ...$initialRecords A collection, a record, or an array of records or collections. All other types will be ignored.
      * @return GenericIntegerPrimaryBasket
      */
-    public static function create(...$initialRecords): ?GenericIntegerPrimaryBasket
+    public static function create(...$initialRecords): GenericIntegerPrimaryBasket
     {
-        return new self($initialRecords);
+        return new static($initialRecords);
     }
 
     public function getAllowedItemClasses(): array

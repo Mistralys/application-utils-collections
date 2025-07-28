@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace AppUtils\Baskets;
 
+use AppUtils\ClassHelper;
 use AppUtils\Collections\BaseStringPrimaryCollection;
 use AppUtils\Interfaces\StringPrimaryRecordInterface;
 
@@ -30,6 +31,11 @@ use AppUtils\Interfaces\StringPrimaryRecordInterface;
  *
  * @package App Utils
  * @subpackage Collections
+ *
+ * @method StringPrimaryRecordInterface[] getAll()
+ * @method StringPrimaryRecordInterface getByID(string $id)
+ *
+ * @phpstan-consistent-constructor Constructors may be freely overridden, so `static::` can safely be used in {@see self::create()}.
  * @phpstan-import-type AnyCollectionRecord from BasketInterface
  */
 class GenericStringPrimaryBasket extends BaseStringPrimaryCollection implements StringPrimaryBasketInterface
@@ -48,7 +54,7 @@ class GenericStringPrimaryBasket extends BaseStringPrimaryCollection implements 
      */
     public static function create(...$initialRecords): GenericStringPrimaryBasket
     {
-        return new self($initialRecords);
+        return new static($initialRecords);
     }
 
     public function getAllowedItemClasses(): array
