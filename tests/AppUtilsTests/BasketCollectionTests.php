@@ -108,12 +108,12 @@ final class BasketCollectionTests extends BaseTestCase
 
     public function test_addCollectionWithIncompatibleItems() : void
     {
-        $collectionA = new GenericStringPrimaryBasket(array(
+        $collectionA = GenericStringPrimaryBasket::create(array(
             new StringPrimaryRecordImpl('foo'),
             new StringPrimaryRecordImpl('bar')
         ));
 
-        $collectionB = new GenericIntegerPrimaryBasket(array(
+        $collectionB = GenericIntegerPrimaryBasket::create(array(
             new IntegerPrimaryRecordImpl(333),
             new IntegerPrimaryRecordImpl(444)
         ));
@@ -186,7 +186,7 @@ final class BasketCollectionTests extends BaseTestCase
 
     public function test_specificItemBasketOnlyAcceptsAllowedItems() : void
     {
-        $basket = new SpecificItemBasketImpl();
+        $basket = SpecificItemBasketImpl::create();
 
         $basket->addItem(new StringPrimaryRecordImpl('foo'));
         $basket->addItem(new SpecificItemImpl('bar'));
@@ -197,7 +197,7 @@ final class BasketCollectionTests extends BaseTestCase
 
     public function test_removeItem() : void
     {
-        $collection = new GenericStringPrimaryBasket();
+        $collection = GenericStringPrimaryBasket::create();
 
         $item = new StringPrimaryRecordImpl('foo');
         $collection->addItem($item);
@@ -208,7 +208,7 @@ final class BasketCollectionTests extends BaseTestCase
 
     public function test_removeItems() : void
     {
-        $collection = new GenericStringPrimaryBasket();
+        $collection = GenericStringPrimaryBasket::create();
 
         $collection->addItems(array(
             new StringPrimaryRecordImpl('foo'),
@@ -222,7 +222,7 @@ final class BasketCollectionTests extends BaseTestCase
 
     public function test_itemAddedEvent() : void
     {
-        $collection = new GenericStringPrimaryBasket();
+        $collection = GenericStringPrimaryBasket::create();
         $eventTriggered = false;
 
         $collection->onItemAdded(function() use (&$eventTriggered) : void {
@@ -236,7 +236,7 @@ final class BasketCollectionTests extends BaseTestCase
 
     public function test_itemRemovedEvent() : void
     {
-        $collection = new GenericStringPrimaryBasket();
+        $collection = GenericStringPrimaryBasket::create();
         $eventTriggered = false;
 
         $collection->onItemRemoved(function(ItemRemovedEvent $event) use (&$eventTriggered) : void {
