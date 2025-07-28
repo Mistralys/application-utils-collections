@@ -9,6 +9,10 @@ use AppUtils\Baskets\GenericStringPrimaryBasket;
 /**
  * Basket which restricts the items to a specific class,
  * {@see SpecificItemImpl}.
+ *
+ * @method SpecificItemImpl[] getAll()
+ * @method SpecificItemImpl getByID(string $id)
+ * @method static SpecificItemBasketImpl create(...$initialRecords)
  */
 class SpecificItemBasketImpl extends GenericStringPrimaryBasket
 {
